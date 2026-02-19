@@ -6,7 +6,8 @@ import { PrismaPg } from '@prisma/adapter-pg';
 export class PrismaService extends PrismaClient {
     constructor() {
         try {
-            const adapter = new PrismaPg({ url: process.env.DATABASE_URL });
+            const connectionString = `${process.env.DATABASE_URL}`;
+            const adapter = new PrismaPg({ connectionString });
             super({ adapter });
         } catch {
             throw new Error("Postgre connection failed")
