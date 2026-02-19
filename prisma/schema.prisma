@@ -7,3 +7,53 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum AssetType {
+  STOCK
+  FII
+  ETF
+}
+
+enum TransactionType {
+  BUY
+  SELL
+}
+
+model User {
+  id           String        @id @default(uuid())
+  email        String
+  password     String
+  role         Role
+  cretedAt     DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  transactions Transaction[]
+}
+
+model Asset {
+  id           String        @id @default(uuid())
+  ticker       String
+  name         String
+  type         AssetType
+  createdAt    DateTime      @default(now())
+  transactions Transaction[]
+}
+
+model Transaction {
+  id       String          @id @default(uuid())
+  type     TransactionType
+  quantity Float
+  price    Float
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  assetId String
+  asset   Asset  @relation(fields: [assetId], references: [id])
+
+  createdAt DateTime @default(now())
+}
