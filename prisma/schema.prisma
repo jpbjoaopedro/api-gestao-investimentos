@@ -29,6 +29,7 @@ model User {
   email        String
   password     String
   role         Role
+  refreshToken String?
   cretedAt     DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   transactions Transaction[]
