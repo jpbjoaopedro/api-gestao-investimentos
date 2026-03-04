@@ -4,11 +4,10 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.do';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
   @ApiOperation({ summary: 'Register user' })
   @ApiResponse({ status: 201, description: 'User created successfully' })

@@ -5,12 +5,13 @@ import { envValidationSchema } from './config/env.validation';
 import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-  imports: [PrismaModule,
+  imports: [
+    PrismaModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      validationSchema: envValidationSchema
+      validationSchema: envValidationSchema,
     }),
-    AuthModule
+    AuthModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}
